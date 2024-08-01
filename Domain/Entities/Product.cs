@@ -9,7 +9,7 @@ namespace Domain.Entities
   public class Product: BaseEntity<Guid>
   {
     public List<PriceList> PriceLists { get; set; }
-    public List<PriceListColumn> priceListColumns { get; set; }
+    public List<PriceListColValue> priceListColumnValues { get; set; }
 
     public string Name {  get; set; }
     public string Code { get; set; }

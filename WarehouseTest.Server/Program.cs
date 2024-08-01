@@ -1,4 +1,8 @@
+using Infrastructure.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
 // Add services to the container.
 
@@ -17,6 +21,7 @@ if (app.Environment.IsDevelopment())
 {
   app.UseSwagger();
   app.UseSwaggerUI();
+  await app.InitialiseDatabaseAsync();
 }
 
 app.UseHttpsRedirection();
