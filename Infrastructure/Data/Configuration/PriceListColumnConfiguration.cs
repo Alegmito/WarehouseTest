@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -9,15 +10,16 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data.Configuration
 {
-  internal class PriceListColumnConfiguration : IEntityTypeConfiguration<PriceListColumn>
-  {
-    public void Configure(EntityTypeBuilder<PriceListColumn> builder)
+    public class PriceListColumnConfiguration : IEntityTypeConfiguration<PriceListColumn>
     {
-      builder.Property(t => t.Name)
-        .IsRequired();
+        public readonly int nameLength = 450;
+        public void Configure(EntityTypeBuilder<PriceListColumn> builder)
+        {
+            builder.Property(t => t.Name)
+              .IsRequired().HasColumnType($"nvarchar({nameLength})");
+            builder.Property(t => t.PriceListColValType).HasDefaultValue(PriceListColValType.Int).IsRequired();
 
-      builder.HasOne(b => b.Product);
-      builder.HasOne(b => b.PriceList);
+            builder.HasOne(b => b.PriceList);
+        }
     }
-  }
 }

@@ -1,3 +1,8 @@
+# Database startup
+Apply Migrations to the DB from the root of the directory
+
+``` dotnet ef database update --project Infrastructure --startup-project WarehouseTest.Server ```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
