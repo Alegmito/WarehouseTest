@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data
 {
-	public class AppDBContext : DbContext
+	public class WarehouseDbContext(DbContextOptions<WarehouseDbContext> options) : DbContext(options)
 	{
 		public DbSet<PriceList> PriceLists { get; set; }
 		public DbSet<Product> Products { get; set; }
@@ -19,9 +19,7 @@ namespace Infrastructure.Data
 		public DbSet<PriceListColValueInt> PriceListColValuesString { get; set; }
 		public DbSet<PriceListColValueText> PriceListColValuesText { get; set; }
 
-		public AppDBContext(DbContextOptions<AppDBContext> options) : base(options) { }
-
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
 			new PriceListConfiguration().Configure(modelBuilder.Entity<PriceList>());

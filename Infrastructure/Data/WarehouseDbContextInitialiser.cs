@@ -20,24 +20,19 @@ namespace Infrastructure.Data
 		public static async Task InitialiseDatabaseAsync(this WebApplication app)
 		{
 			using var scope = app.Services.CreateScope();
-			var initializer = scope.ServiceProvider.GetRequiredService<AppDbContextInitialiser>();
+			var initializer = scope.ServiceProvider.GetRequiredService<WarehouseDbContextInitialiser>();
 			await initializer.InitialiseAsync();
 			await initializer.TrySeedAsync();
 		}		 
 	}
 
-	public class AppDbContextInitialiser
-	{
-		private readonly AppDBContext _context;
+	public class WarehouseDbContextInitialiser(
+          WarehouseDbContext context
+        )
+    {
+		private readonly WarehouseDbContext _context = context;
 
-		public AppDbContextInitialiser(
-		  AppDBContext context
-		)
-		{
-		_context = context;
-		}
-
-		public async Task InitialiseAsync()
+        public async Task InitialiseAsync()
 		{
 			try
 			{
