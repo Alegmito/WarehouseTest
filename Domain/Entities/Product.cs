@@ -8,8 +8,8 @@ namespace Domain.Entities
 {
   public class Product: BaseEntity<Guid>
   {
-    public List<PriceList> PriceLists { get; set; }
-    public List<PriceListColValue> priceListColumnValues { get; set; }
+    public List<PriceList> PriceLists { get; set; } = new();
+    public List<PriceListColValue> priceListColumnValues { get; set; } = new();
 
     public string Name {  get; set; }
     public string Code { get; set; }

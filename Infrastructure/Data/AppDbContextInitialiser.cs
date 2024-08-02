@@ -42,7 +42,6 @@ namespace Infrastructure.Data
 			try
 			{
 				await _context.Database.MigrateAsync();
-
 			}
 			catch (Exception ex)
 			{
@@ -152,8 +151,6 @@ namespace Infrastructure.Data
 	  };
 			priceLists[0].Columns.AddRange(priceListColumns.Take(2));
 			priceLists[1].Columns.AddRange(priceListColumns.Skip(2));
-			// TODO: delte
-			//var priceListColValues = new List<PriceListColValue>();
 
 			foreach (var product in products)
 				foreach (var priceList in product.PriceLists)
@@ -168,8 +165,6 @@ namespace Infrastructure.Data
 			await _context.PriceLists.AddRangeAsync(priceLists);
 			await _context.Products.AddRangeAsync(products);
 			await _context.PriceListColumns.AddRangeAsync(priceListColumns);
-			// TODO: delete
-			//await _context.PriceListColValues.AddRangeAsync(priceListColValues);
 			try
 			{
 				await _context.SaveChangesAsync();

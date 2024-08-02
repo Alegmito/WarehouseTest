@@ -7,8 +7,8 @@ namespace Domain.Entities
   {
     public string Name { get; set; }
     public PriceListColValType PriceListColValType { get; set; }
-    
-    public List<PriceListColValue> PriceListColValues { get; set; }
+
+        public List<PriceListColValue> PriceListColValues { get; set; } = new();
     public PriceList PriceList { get; set; }
   }
   

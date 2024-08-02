@@ -16,9 +16,9 @@ namespace Domain.Entities
     public static PriceListColValue Create(PriceListColValType priceListColValType) =>
       priceListColValType switch
       {
-        PriceListColValType.Text => new PriceListColValueText(),
-        PriceListColValType.String => new PriceListColValueString(),
-        PriceListColValType.Int => new PriceListColValueInt(),
+        PriceListColValType.Text => new PriceListColValueText() { Value = ""},
+        PriceListColValType.String => new PriceListColValueString() { Value = ""},
+        PriceListColValType.Int => new PriceListColValueInt() { Value = 0 },
         _ => throw new NotImplementedException(),
       };
   }
