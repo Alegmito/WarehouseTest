@@ -22,7 +22,9 @@ namespace Infrastructure.Data.Configuration
             builder.Property(b => b.Code).HasColumnType($"nvarchar({codeLength})");
 
             builder.HasMany(b => b.priceListColumnValues)
-              .WithOne(b => b.Product);
+              .WithOne(b => b.Product)
+              .HasForeignKey(b => b.ProductId)
+              .IsRequired();
         }
     }
 }

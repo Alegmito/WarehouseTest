@@ -82,28 +82,26 @@ namespace Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PriceListColValue",
+                name: "PriceListColValues",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PriceListColValueType = table.Column<int>(type: "int", nullable: false),
                     PriceListColumnId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    value_type = table.Column<string>(type: "nvarchar(21)", maxLength: 21, nullable: false),
-                    valueInt = table.Column<int>(type: "int", nullable: true),
-                    valueString = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    valueText = table.Column<string>(type: "nvarchar(2000)", nullable: true)
+                    Value = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PriceListColValue", x => x.Id);
+                    table.PrimaryKey("PK_PriceListColValues", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PriceListColValue_PriceListColumns_PriceListColumnId",
+                        name: "FK_PriceListColValues_PriceListColumns_PriceListColumnId",
                         column: x => x.PriceListColumnId,
                         principalTable: "PriceListColumns",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PriceListColValue_Products_ProductId",
+                        name: "FK_PriceListColValues_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -116,13 +114,13 @@ namespace Infrastructure.Data.Migrations
                 column: "PriceListId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PriceListColValue_PriceListColumnId",
-                table: "PriceListColValue",
+                name: "IX_PriceListColValues_PriceListColumnId",
+                table: "PriceListColValues",
                 column: "PriceListColumnId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PriceListColValue_ProductId",
-                table: "PriceListColValue",
+                name: "IX_PriceListColValues_ProductId",
+                table: "PriceListColValues",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
@@ -141,7 +139,7 @@ namespace Infrastructure.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "PriceListColValue");
+                name: "PriceListColValues");
 
             migrationBuilder.DropTable(
                 name: "PriceListProduct");

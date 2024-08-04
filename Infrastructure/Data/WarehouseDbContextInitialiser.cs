@@ -126,7 +126,7 @@ namespace Infrastructure.Data
 			for (int i = 0; i < products.Length / 4; i++)
 			{
 				Product product = products[i];
-				product.PriceLists.Add(priceLists[0]);
+				product.PriceLists.Add(priceLists[1]);
 			}
 
 			PriceListColumn[] priceListColumns =
@@ -137,7 +137,7 @@ namespace Infrastructure.Data
 		},
 		new PriceListColumn() {
 		  Name = "NumberColumn1",
-		  PriceListColValType = Domain.Enums.PriceListColValType.String,
+		  PriceListColValType = Domain.Enums.PriceListColValType.Int,
 		},
 		new PriceListColumn() {
 		  Name = "StringColumn1",

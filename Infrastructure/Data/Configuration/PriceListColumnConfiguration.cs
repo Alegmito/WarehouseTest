@@ -20,6 +20,11 @@ namespace Infrastructure.Data.Configuration
             builder.Property(t => t.PriceListColValType).HasDefaultValue(PriceListColValType.Int).IsRequired();
 
             builder.HasOne(b => b.PriceList);
+
+            builder.HasMany(b => b.PriceListColValues)
+                .WithOne(b => b.PriceListColumn)
+                .HasForeignKey(b => b.PriceListColumnId)
+                .IsRequired();
         }
     }
 }

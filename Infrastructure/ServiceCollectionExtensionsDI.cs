@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Application;
 
 namespace Infrastructure
 {
@@ -15,7 +16,9 @@ namespace Infrastructure
                 options.UseSqlServer(connectionStr);
             });
 
-            services.AddScoped<WarehouseDbContextInitialiser>();
+            services
+                .AddScoped<WarehouseDbContextInitialiser>()
+                .AddScoped<IWarehouseDbContext>(provider => provider.GetRequiredService<WarehouseDbContext>());
 
             return services;
         }

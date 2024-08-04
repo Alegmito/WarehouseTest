@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
 using Infrastructure.Data;
 using Application.DTO;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace WarehouseTest.Server.Controllers
 {
@@ -16,10 +18,14 @@ namespace WarehouseTest.Server.Controllers
     public class PriceListsController : ControllerBase
     {
         private readonly WarehouseDbContext _context;
+        private readonly IMapper _mapper;
 
-        public PriceListsController(WarehouseDbContext context)
+        public PriceListsController(
+            WarehouseDbContext context,
+            IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/PriceLists
@@ -37,7 +43,10 @@ namespace WarehouseTest.Server.Controllers
                 .Where(l => l.Id == id)
                 .Include(pl => pl.Columns)
                 .Include(pl => pl.Products)
-                .ThenInclude(p => p.priceListColumnValues).FirstOrDefaultAsync();
+                .ThenInclude( p => p.priceListColumnValues.Where(p => p.PriceListColumn.PriceList.Id == id))
+                .ThenInclude(p => p.PriceListColumn)
+                .ProjectTo<PriceListDTO>(_mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
 
             if (priceList == null)
             {

@@ -23,7 +23,8 @@ namespace Infrastructure.Data.Configuration
 
             builder
               .HasMany(b => b.Columns)
-              .WithOne(b => b.PriceList);
+              .WithOne(b => b.PriceList)
+              .HasForeignKey(b => b.PriceListId).IsRequired();
         }
     }
 }

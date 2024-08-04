@@ -15,6 +15,10 @@ namespace Infrastructure.Data.Configuration
         public static readonly int textValueLength = 2000;
 
         public void Configure(EntityTypeBuilder<PriceListColValue> builder)
-        { }
+        {
+            builder.Property(p => p.PriceListColValueType).IsRequired();
+            builder.Property(p => p.Value).IsRequired().HasColumnType($"nvarchar").HasMaxLength(textValueLength);
+            builder.Ignore(p => p.ObjectValue);
+        }
     }
 }

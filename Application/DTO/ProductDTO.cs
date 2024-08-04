@@ -7,8 +7,7 @@ namespace Application.DTO
     {
         public string Name { get; set; }
         public string Code { get; set; }
-        public List<PriceListDTO> PriceLists { get; set; } = new();
-        public List<PriceListColValueDTO> priceListColumnValues { get; set; } = new();
+        public List<PriceListColValueDTO> PriceListColumnValues { get; set; } = new();
 
         private class Mapping : Profile
         {

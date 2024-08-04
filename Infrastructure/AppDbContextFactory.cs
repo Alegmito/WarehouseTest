@@ -9,14 +9,15 @@ using Infrastructure.Data;
 
 namespace Infrastructure
 {
-    public class WarehouseDbContextFactory : IDesignTimeDbContextFactory<WarehouseDbContext>
-    {
-        public WarehouseDbContext CreateDbContext(string[] args)
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<WarehouseDbContext>();
-            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=EcommerceDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+    // for scaffolding purposes
+    //public class WarehouseDbContextFactory : IDesignTimeDbContextFactory<WarehouseDbContext>
+    //{
+    //    public WarehouseDbContext CreateDbContext(string[] args)
+    //    {
+    //        var optionsBuilder = new DbContextOptionsBuilder<WarehouseDbContext>();
+    //        optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=EcommerceDb;Trusted_Connection=True;MultipleActiveResultSets=true");
 
-            return new WarehouseDbContext(optionsBuilder.Options);
-        }
-    }
+    //        return new WarehouseDbContext(optionsBuilder.Options);
+    //    }
+    //}
 }
